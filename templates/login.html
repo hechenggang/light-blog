@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} 登录 {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+<div class="article-body">
+    <form action="/admin/login" method="post">
+        <p class="article-title">登录</p>
+        <hr>
+        <p class="article-author">
+            <input type="text" name="username" placeholder="用户">
+        </p>
+        <hr>
+        <p class="article-author">
+            <input type="password" name="password" placeholder="密码">
+        </p>
+        <hr>
+        <div class="article-content">
+            <button class="btn btn-blue" type="submit">登录</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} IMHCG {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <a class="btn btn-white" href="/admin/new">新建</a>
+    <a class="btn btn-white" href="/admin/logout">退出</a>
+    <hr class="hr-white">
+</div>
+
+<div class="article-feed">
+    {% for article in feeds %}
+    <div class="article-body">
+        <p class="article-title"><a href="/article/{{article['id']}}">{{article['title']}}</a></p>
+        <hr>
+
+        <p class="article-author">
+            {{article['brief']}}
+        </p>
+        <hr>
+        <div class="article-content">
+            <a class="btn btn-white no-margin" href="/admin/delete/{{article['id']}}"
+                onClick="return confirm('确定删除?');">删除</a>
+            <a class="btn btn-white no-margin" href="/admin/update/{{article['id']}}">编辑</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

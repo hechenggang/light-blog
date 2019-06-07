@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %} IMHCG {% endblock %}
+{% block head %}
+{{ super() }}
+<style>
+    .icon,
+    .title,
+    .slogen {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 1.25rem;
+        font-weight: normal;
+        margin-top: .5rem;
+        line-height: 2rem;
+    }
+
+    .slogen {
+        font-size: 1rem;
+        font-weight: lighter;
+        margin-bottom: .5rem;
+    }
+
+    .icon>img {
+        border-radius: 50%;
+        padding: 1rem 0;
+        width: 7rem;
+    }
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+    <div class="icon">
+        <img src="https://cdn.imhcg.cn/blog/icon@imhcg.png">
+    </div>
+    <hr class="hr-white">
+    <p class="title">IMHCG</p>
+    <p class="slogen">不习惯的事越来越多，但我仍在前进⋯⋯就算步伐很小，我也在一步一步的前进。</p>
+    <hr class="hr-white">
+</div>
+
+<div class="article-feed">
+    {% for article in feeds %}
+    <div class="article-body">
+        <p class="article-title"><a href="/article/{{article['id']}}">{{article['title']}}</a></p>
+        <hr>
+        <p class="article-content">{{article['brief']}}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

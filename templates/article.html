@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} {{article['title']}} {% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="article-body">
+    <p class="article-title">{{article['title']}}</p>
+    <hr>
+    <p class="article-author">{{article['string_time']}}</p>
+    <hr>
+    <div class="article-content">
+        {{article['content']|safe}}
+    </div>
+</div>
+{% endblock %}

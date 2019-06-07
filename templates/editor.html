@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %} 编辑器 {% endblock %}
+{% block head %}
+{{ super() }}
+<style>
+    .w-e-toolbar,
+    .w-e-text-container,
+    .w-e-text {
+        background-color: #ffffff;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="article-body">
+    <form id="editor-form">
+        <p class="article-title">{{data['name']}}</p>
+        <hr>
+        <input type="hidden" name="id" value="{{data['id']}}">
+        <p class="article-author">
+            <input type="text" name="title" placeholder="标题" value="{{data['title']}}">
+        </p>
+        <hr>
+        <p class="article-author">
+            <input type="text" name="brief" placeholder="简介" value="{{data['brief']}}">
+        </p>
+        <hr>
+        <div class="article-author" id="editor">{{data['content']|safe}}</div>
+        <hr>
+    </form>
+    <div class="article-content">
+        <button class="btn-blue" id="save">提交</button>
+    </div>
+</div>
+<script type="text/javascript" src="/static/wangEditor.min.js"></script>
+<script type="text/javascript">
+
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'fontSize',  // 字号
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'link',  // 插入链接
+        'justify',  // 对齐方式
+        'quote',  // 引用
+        'image',  // 插入图片
+        'table',  // 表格
+        'video',  // 插入视频
+        'code',  // 插入代码
+    ]
+    editor.create()
+
+    var Submited = false;
+    document.querySelector('#save').addEventListener('click', function () {
+        if (!Submited) {
+            Submited = true;
+            let formData = new FormData(document.querySelector("#editor-form"));
+            let request = new XMLHttpRequest();
+            request.open("POST", "/admin/article");
+            formData.append("content", editor.txt.html());
+            request.onload = function (e) {
+                if (request.status == 200) {
+                    alert(JSON.parse(request.response).body)
+                    location.assign('/admin/manage');
+                } else {
+                    alert(JSON.parse(request.response).body)
+                    Submited = false;
+                }
+            };
+            request.send(formData);
+        }
+
+    }, false)
+
+</script>
+{% endblock %}

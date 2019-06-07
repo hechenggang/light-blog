@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://cdn.imhcg.cn/blog/favour@imhcg.png" type="image/x-icon">
+    <title>{% block title %}{% endblock %}</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 2rem;
+            font-weight: normal;
+            color: #1A2B3C;
+        }
+
+        a,
+        a:visited {
+            color: #97CADB;
+            text-decoration: none;
+        }
+
+        hr {
+            border: none;
+            display: block;
+            height: 1px;
+            background-color: transparent;
+        }
+
+        .hr-white {
+            background-color: #FFFFFF;
+            opacity: .75;
+            margin: 1rem 0;
+        }
+
+
+        input {
+            border: none;
+            padding: .5rem;
+            width: 100%;
+            outline: none;
+        }
+
+
+        img {
+            width: 100%;
+        }
+
+        blockquote {
+            background-color: #FFFFFF;
+            border-left: 3px solid #3498DB;
+            overflow-x: auto;
+            padding: 1rem;
+        }
+
+        pre {
+            background-color: #EEEEEE;
+            border-left: 3px solid #97CADB;
+            overflow-x: auto;
+            padding: 1rem;
+        }
+
+        code {
+            background-color: #EEEEEE;
+        }
+
+        pre * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: lighter;
+            font-size: .9rem;
+            line-height: 1.8rem;
+        }
+
+        button {
+            border: none;
+            padding: .5rem .75rem;
+            border-radius: .25rem;
+            margin-right: .25rem;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            padding: .5rem .75rem;
+            margin: .25rem;
+            border-radius: .25rem;
+            margin-right: .25rem;
+        }
+
+        .btn-white {
+            background-color: #FFFFFF;
+            color: #97CADB;
+            border: 1px solid #97CADB;
+        }
+
+        .btn-blue {
+            background-color: #97CADB;
+            color: #FFFFFF;
+        }
+
+        .no-margin {
+            margin: 0;
+        }
+
+        .article-body {
+            display: block;
+            width: 65%;
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+
+        .article-title {
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: .25rem .25rem 0rem 0rem;
+        }
+
+        .article-author {
+            font-size: .9rem;
+            font-weight: lighter;
+        }
+
+        .article-content {
+            font-size: 1rem;
+            font-weight: normal;
+            border-radius: 0rem 0rem .25rem .25rem;
+        }
+
+        .article-title,
+        .article-author,
+        .article-content {
+            padding: .5rem .5rem;
+            background-color: #FFFFFF;
+            opacity: .75;
+        }
+
+        .header {
+            display: block;
+            width: 65%;
+            margin: 0rem auto;
+            margin-top: 1rem;
+        }
+
+        @media screen and (max-width:720px) {
+            .article-body {
+                width: 95%;
+                margin-top: .5rem;
+            }
+
+            .header {
+                width: 95%;
+                margin-top: .5rem;
+            }
+        }
+
+
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(to bottom, #97CADB, #D6E8EE);
+            z-index: -1;
+        }
+
+        .loading {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to bottom, #97CADB, #D6E8EE);
+            z-index: 1;
+        }
+
+        .loading-circle {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            border: .25rem solid #34495e;
+            animation: spin 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotateY(540deg);
+            }
+        }
+
+        .footer {
+            padding: 1rem;
+            text-align: center;
+            list-style: none;
+        }
+
+        .footer-item {
+            display: inline-block;
+        }
+
+        .footer-item>a {
+            font-size: .8rem;
+            font-weight: lighter;
+            margin: 0 .25rem;
+        }
+    </style>
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="loading">
+        <div class="loading-circle"></div>
+    </div>
+    {% block content %}{% endblock %}
+    <ul class="footer">
+        <li class="footer-item"><a href="/">IMHCG</a></li>
+        <li class="footer-item"><a href="http://www.miitbeian.gov.cn">蜀ICP备18020545-1号</a></li>
+    </ul>
+    <div class="background"></div>
+    <script>window.onload = () => { document.querySelector(".loading").style.display = "none"; }</script>
+</body>
+
+</html>

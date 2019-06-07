@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} {{message['type']}} {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="article-body">
+    <p class="article-title">{{message['type']}}</p>
+    <hr>
+    <div class="article-content">
+        <p>{{message['body']}}</p>
+    </div>
+</div>
+{% endblock %}
